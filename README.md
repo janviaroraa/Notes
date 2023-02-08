@@ -75,7 +75,7 @@ Swift Error Handling Strategies:
   
   # fatalError
   fatalError: can be used in 2 ways, i.e. <br>
-     1. fatalError()
+     1. fatalError() <br>
      2. fatalError("with a message") 
   
         The message that is passed to the function is printed to the console along with the file and line on which the fatalError(_:file:line:) function is called. And your application immediately stops execution.
