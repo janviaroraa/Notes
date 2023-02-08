@@ -63,3 +63,38 @@ Swift Error Handling Strategies:
  MARK: - Imp
  recoverable: Optional, Result, throw;
  and non-recoverable: assert(), precondition(), fatalError().
+
+  
+  # NSCoder
+  NSCoder is related to Interface Builder (IB) -> in case of storyboards.
+     Everything that we set and do in storyboards, Xcode will then translate it to code behind then scenes. The way it translates this code is by decoding it, using NSCoder.
+     But if we are not using storyboards, we will need to tell Xcode "the required init method". This won't cause our app to crash because there ain't any storyboards to decode.
+     
+     super.init(coder: coder) can also be used instead of fatalError
+  
+  
+  # fatalError
+  fatalError: can be used in 2 ways, i.e.
+     1. fatalError()
+     
+     2. fatalError("with a message")
+        The message that is passed to the function is printed to the console along with the file and line on which the fatalError(_:file:line:) function is called. And your application immediately stops execution.
+     
+        E.g : fatal error: with a message: file /Task-Team-UI/SubtaskCell.swift, line 20
+     
+        DECLARATION:
+         func fatalError(
+             _ message: @autoclosure () -> String = String(),
+             file: StaticString = #file,
+             line: UInt = #line
+         ) -> Never
+     
+         EXITING THE ABOVE FUNCTION:
+         enum Never
+         The return type of functions that do not return normally, i.e. a type with no values.
+     
+     Cannot catch a fatal error in a do-catch statement.
+     
+     Downside : The application is terminated without any form of warning or precondition validation.
+     
+     Only use fatalError if the application enters an unknown state, a state it doesn't know how to handle. Remember that the application will crash and burn if it throws a fatal error.
